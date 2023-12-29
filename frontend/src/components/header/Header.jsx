@@ -1,5 +1,5 @@
 import {useEffect, useRef} from 'react';
-
+import "./Header.css";
 import logo from "../../assets/images/logo.png";
 import userImage from "../../assets/images/avatar-icon.png"
 import {NavLink, Link} from "react-router-dom";
@@ -22,8 +22,28 @@ const navLinks = [
 ]
 
 const Header = () => {
+
+  const headerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  const handleStickyHeader = () => {
+    window.addEventListener("scroll", ()=> {
+      if(document.body.scrollTop <= 80 || document.documentElement.scrollTop <= 80) {
+        headerRef.current.classList.add("sticky__header");
+      }
+    })
+  }
+
+  useEffect(() => {
+    handleStickyHeader()
+
+    return ()=>window.removeEventListener("scroll", handleStickyHeader);
+  });
+
+  const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
+
   return (
-    <header className='header flex items-center'>
+    <header className='header flex items-center' ref={headerRef}>
       <div className='container'>
         <div className='flex items-center justify-between cursor-auto'>
           {/* ========= logo =========== */}
@@ -31,7 +51,7 @@ const Header = () => {
             <img src = {logo} alt = "" />
           </div>
           {/* ========= menu =========== */}
-          <div className='navigation'>
+          <div className='navigation' ref={menuRef} onClick={toggleMenu}>
             <ul className='menu flex items-center gap-[2.7rem]'>
               {
                 navLinks.map((navLinkInfo, index) => {
@@ -56,12 +76,12 @@ const Header = () => {
             
             {/* ========= login =========== */}
               <Link to="/login">
-                <button className='bg-primaryColor px-2 text-white rounded-2xl my-2'>
+                <button className='btn mt-1.5'>
                   Login
                 </button>
               </Link>
 
-              <span className='hidden'>
+              <span className='md:hidden' onClick={toggleMenu}>
                 <BiMenu className="w-6 h-6 cursor-pointer"></BiMenu>
               </span>
 
