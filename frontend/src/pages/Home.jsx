@@ -164,7 +164,7 @@ const Home = () => {
         <div className="flex flex-col">
           <div className="flex flex-col text-center">
             <div className="flex flex-col">
-              <h1 className="heading">Our medical services</h1>
+              <h1 className="heading">Meet our Doctors</h1>
               <p>World-class care for everyone. Our health System offers unmatched expert health care.</p>
             </div>
           </div>
