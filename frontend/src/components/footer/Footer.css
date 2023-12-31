@@ -1,0 +1,8 @@
+.footer {
+    background-image: url('./../../assets/images/hero-bg.png');
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    background-repeat: no-repeat; /* Adjust as needed */
+    /* Other styling properties for the footer */
+  }
+  
